@@ -15,8 +15,6 @@ namespace ProjectoXadrez
 
 				for (int j = 0; j < tab.Colunas; j++)
 				{
-
-
 					if (tab.GetPeca(i, j) == null)
 						Console.Write("- ");
 					else
