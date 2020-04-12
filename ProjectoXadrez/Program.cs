@@ -10,7 +10,7 @@ namespace ProjectoXadrez
 		{
 			try
 			{
-				Tabuleiro tab = new Tabuleiro(8, 8);
+				/*Tabuleiro tab = new Tabuleiro(8, 8);
 
 
 				tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 0));
@@ -18,7 +18,12 @@ namespace ProjectoXadrez
 				tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(2, 4));
 				tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(0, 2));
 
-				Tela.imprimirTabuleiro(tab);
+				Tela.imprimirTabuleiro(tab);*/
+
+				PosicaoXadrez pos = new PosicaoXadrez('a', 1);
+
+				Console.WriteLine(pos.ToPosicao());
+
 			}
 			catch (TabuleiroException t)
 			{
