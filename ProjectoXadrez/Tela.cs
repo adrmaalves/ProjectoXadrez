@@ -11,7 +11,7 @@ namespace ProjectoXadrez
 			Console.WriteLine();
 			for (int i = 0; i < tab.Linhas; i++)
 			{
-				Console.Write("| ");
+				//Console.Write("| ");
 
 				for (int j = 0; j < tab.Colunas; j++)
 				{
@@ -20,7 +20,7 @@ namespace ProjectoXadrez
 					else
 						Console.Write(tab.GetPeca(i, j) + " ");
 				}
-				Console.WriteLine("|");
+				Console.WriteLine(/*"|"*/);
 
 			}
 		}
