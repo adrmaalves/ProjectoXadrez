@@ -14,24 +14,39 @@ namespace ProjectoXadrez
 
 				while (!partida.terminada)
 				{
-					Console.Clear();
-					Tela.imprimirTabuleiro(partida.tab);
+					try
+					{
+						Console.Clear();
+						Tela.imprimirTabuleiro(partida.tab);
+						Console.WriteLine();
+						Console.WriteLine("Turno: " + partida.Turno);
+						Console.WriteLine("Aguarda jogada: " + partida.jogadorAtual);
 
-					Console.WriteLine();
-					Console.Write("Origem: ");
-					Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+						Console.WriteLine();
+						Console.Write("Origem: ");
+						Posicao origem = Tela.LerPosicaoXadrez().ToPosicao();
+						partida.ValidarPosicaoOrigem(origem);
 
-					bool[,] posicoesPossiveis = partida.tab.GetPeca(origem).movimentosPossiveis();
+						bool[,] posicoesPossiveis = partida.tab.GetPeca(origem).movimentosPossiveis();
 
-					Console.Clear();
-					Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+						Console.Clear();
+						Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
-					Console.WriteLine();
-					Console.Write("Destino: ");
-					Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
-					partida.executaMovimento(origem, destino);
+						Console.WriteLine();
+						Console.Write("Destino: ");
+						Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
+						partida.ValidarPosicaoDestino(origem, destino);
 
-
+						partida.RealizaJogada(origem, destino);
+					}
+					catch (TabuleiroException t)
+					{
+						Console.WriteLine(t.Message);
+					}
+					finally
+					{
+						Console.ReadKey(true);
+					}
 				}
 			}
 			catch (TabuleiroException t)
