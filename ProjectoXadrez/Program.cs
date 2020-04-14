@@ -17,10 +17,7 @@ namespace ProjectoXadrez
 					try
 					{
 						Console.Clear();
-						Tela.imprimirTabuleiro(partida.tab);
-						Console.WriteLine();
-						Console.WriteLine("Turno: " + partida.Turno);
-						Console.WriteLine("Aguarda jogada: " + partida.jogadorAtual);
+						Tela.ImprimirPartida(partida);
 
 						Console.WriteLine();
 						Console.Write("Origem: ");
@@ -41,21 +38,29 @@ namespace ProjectoXadrez
 					}
 					catch (TabuleiroException t)
 					{
+						ConsoleColor color = Console.ForegroundColor;
+						Console.ForegroundColor = ConsoleColor.Red;
 						Console.WriteLine(t.Message);
+						Console.ForegroundColor = color;
 					}
-					finally
+					/*finally
 					{
 						Console.ReadKey(true);
-					}
+					}*/
 				}
 			}
 			catch (TabuleiroException t)
 			{
+				ConsoleColor color = Console.ForegroundColor;
+				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine(t.Message);
 			}
 			catch (Exception e)
 			{
+				ConsoleColor color = Console.ForegroundColor;
+				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine("Unexpected Error: " + e.Message);
+				Console.ForegroundColor = color;
 			}
 			finally
 			{
