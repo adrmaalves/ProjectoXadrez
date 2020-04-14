@@ -42,11 +42,8 @@ namespace ProjectoXadrez
 						Console.ForegroundColor = ConsoleColor.Red;
 						Console.WriteLine(t.Message);
 						Console.ForegroundColor = color;
-					}
-					/*finally
-					{
 						Console.ReadKey(true);
-					}*/
+					}
 				}
 			}
 			catch (TabuleiroException t)
