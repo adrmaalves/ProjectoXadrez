@@ -1,10 +1,13 @@
-﻿using tabuleiro;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using tabuleiro;
 
 namespace xadrez
 {
-	class Torre : Peca
+	class Dama : Peca
 	{
-		public Torre(Cor cor, Tabuleiro tab) : base(cor, tab)
+		public Dama(Cor cor, Tabuleiro tab) : base(cor, tab)
 		{
 		}
 
@@ -60,12 +63,52 @@ namespace xadrez
 				pos.DefinirValores(pos.Linha, pos.Coluna + 1);
 			}
 
+			//NO
+			pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+			while (Tab.PosicaoValida(pos) && PodeMover(pos))
+			{
+				mat[pos.Linha, pos.Coluna] = true;
+				if (Tab.GetPeca(pos) != null && Tab.GetPeca(pos).Cor != Cor)
+					break;
+				pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna - 1);
+			}
+
+			//NE
+			pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+			while (Tab.PosicaoValida(pos) && PodeMover(pos))
+			{
+				mat[pos.Linha, pos.Coluna] = true;
+				if (Tab.GetPeca(pos) != null && Tab.GetPeca(pos).Cor != Cor)
+					break;
+				pos.DefinirValores(Posicao.Linha - 1, Posicao.Coluna + 1);
+			}
+
+			//SE
+			pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+			while (Tab.PosicaoValida(pos) && PodeMover(pos))
+			{
+				mat[pos.Linha, pos.Coluna] = true;
+				if (Tab.GetPeca(pos) != null && Tab.GetPeca(pos).Cor != Cor)
+					break;
+				pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna + 1);
+			}
+
+			//SO
+			pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+			while (Tab.PosicaoValida(pos) && PodeMover(pos))
+			{
+				mat[pos.Linha, pos.Coluna] = true;
+				if (Tab.GetPeca(pos) != null && Tab.GetPeca(pos).Cor != Cor)
+					break;
+				pos.DefinirValores(Posicao.Linha + 1, Posicao.Coluna - 1);
+			}
+
 			return mat;
 		}
 
 		public override string ToString()
 		{
-			return "T";
+			return "D";
 		}
 	}
 }
