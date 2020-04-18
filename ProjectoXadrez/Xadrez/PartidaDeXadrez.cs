@@ -187,10 +187,11 @@ namespace xadrez
 					{
 						if (mat[i, j])
 						{
+							Posicao origem = x.Posicao;
 							Posicao destino = new Posicao(i, j);
-							Peca pecaCapturada = executaMovimento(x.Posicao, destino);
+							Peca pecaCapturada = executaMovimento(origem, destino);
 							bool testeXeque = EstaEmXeque(cor);
-							DesfazMovimento(x.Posicao, destino, pecaCapturada);
+							DesfazMovimento(origem, destino, pecaCapturada);
 							if (!testeXeque)
 								return false;
 						}
