@@ -14,6 +14,7 @@ namespace xadrez
 		public bool terminada { get; private set; }
 		private HashSet<Peca> Pecas;
 		private HashSet<Peca> Capturadas;
+		private Peca vulneravelEnPassant; //#jogadaespecial En Passant
 
 		public bool xeque { get; private set; }
 
@@ -26,6 +27,7 @@ namespace xadrez
 			Pecas = new HashSet<Peca>();
 			Capturadas = new HashSet<Peca>();
 			xeque = false;
+			vulneravelEnPassant = null;
 			colocarPecas();
 		}
 
@@ -115,6 +117,18 @@ namespace xadrez
 				Turno++;
 				mudaJogador();
 			}
+
+			Peca p = tab.GetPeca(destino);
+			//#jogadaespecial En Passant
+			if(p is Peao && (destino.Linha == origem.Linha - 2 || destino.Linha == origem.Linha + 2))
+			{
+				vulneravelEnPassant = p;
+			}
+			else
+			{
+				vulneravelEnPassant = null;
+			}
+
 		}
 
 		private void mudaJogador()
