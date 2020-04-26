@@ -136,7 +136,7 @@ namespace xadrez
 			}
 		}
 
-		public void RealizaJogada(Posicao origem, Posicao destino)
+		public void RealizaJogada(Posicao origem, Posicao destino, string opPromocao)
 		{
 			Peca pecaCapturada = executaMovimento(origem, destino);
 			if (EstaEmXeque(jogadorAtual))
@@ -150,16 +150,50 @@ namespace xadrez
 			// #jogadaespecial Promocao
 			if (p is Peao)
 			{
-				if ((p.Cor == Cor.Branca && destino.Linha == 0)|| (p.Cor == Cor.Preta && destino.Linha == 7))
+				if ((p.Cor == Cor.Branca && destino.Linha == 0) || (p.Cor == Cor.Preta && destino.Linha == 7))
 				{
 					p = tab.RetirarPeca(destino);
 					Pecas.Remove(p);
-					Peca dama = new Dama(p.Cor, tab);
-					tab.ColocarPeca(dama,destino);
-					Pecas.Add(dama);
+					if (opPromocao != null && opPromocao != "N")
+					{
+						switch (opPromocao)
+						{
+							case "D":
+								{
+									Peca dama = new Dama(p.Cor, tab);
+									tab.ColocarPeca(dama, destino);
+									Pecas.Add(dama);
+									break;
+								}
+							case "B":
+								{
+									Peca bispo = new Bispo(p.Cor, tab);
+									tab.ColocarPeca(bispo, destino);
+									Pecas.Add(bispo);
+									break;
+								}
+							case "C":
+								{
+									Peca cavalo = new Cavalo(p.Cor, tab);
+									tab.ColocarPeca(cavalo, destino);
+									Pecas.Add(cavalo);
+									break;
+								}
+							case "T":
+								{
+									Peca torre = new Torre(p.Cor, tab);
+									tab.ColocarPeca(torre, destino);
+									Pecas.Add(torre);
+									break;
+								}
+							default:
+								{
+									throw new TabuleiroException("Peça errada para Promocao!");
+								}
+						}
+					}
 				}
 			}
-
 
 			if (EstaEmXeque(Adversaria(jogadorAtual)))
 				xeque = true;

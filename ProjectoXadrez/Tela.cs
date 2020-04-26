@@ -29,6 +29,21 @@ namespace ProjectoXadrez
 			}
 		}
 
+		public static char AskPromocao(Posicao origem, Posicao destino, PartidaDeXadrez partida)
+		{
+			Peca p = partida.tab.GetPeca(origem);
+			char op = 'n';
+			if (p is Peao)
+			{
+				if ((p.Cor == Cor.Branca && destino.Linha == 0) || (p.Cor == Cor.Preta && destino.Linha == 7))
+				{
+					Console.Write("Jogada Promocao: (C/T/D/B) ");
+					op = char.Parse(Console.ReadLine());
+				}
+			}
+
+			return op;
+		}
 
 		public static void ImprimirPecasCapturadas(PartidaDeXadrez partida)
 		{

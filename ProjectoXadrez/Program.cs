@@ -33,8 +33,8 @@ namespace ProjectoXadrez
 						Console.Write("Destino: ");
 						Posicao destino = Tela.LerPosicaoXadrez().ToPosicao();
 						partida.ValidarPosicaoDestino(origem, destino);
-
-						partida.RealizaJogada(origem, destino);
+						string op = Tela.AskPromocao(origem, destino, partida).ToString().ToUpper();
+						partida.RealizaJogada(origem, destino,op);
 					}
 					catch (TabuleiroException t)
 					{
