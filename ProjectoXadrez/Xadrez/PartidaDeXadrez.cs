@@ -14,7 +14,7 @@ namespace xadrez
 		public bool terminada { get; private set; }
 		private HashSet<Peca> Pecas;
 		private HashSet<Peca> Capturadas;
-		private Peca vulneravelEnPassant; //#jogadaespecial En Passant
+		public Peca vulneravelEnPassant { get; private set; } //#jogadaespecial En Passant
 
 		public bool xeque { get; private set; }
 
